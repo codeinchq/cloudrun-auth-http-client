@@ -16,9 +16,6 @@ composer require codeinc/cloudrun-auth-http-client
 
 use CodeInc\CloudRunAuthHttpClient\HttpClientFactory;
 
-const CLOUD_RUN_SERVICE_URL = 'https://my-service-12345-uc.a.run.app';
-const JSON_KEY_PATH = '/path/to/your/service-account-key.json';
-
 // create a new HttpClientFactory instance
 $factory = new HttpClientFactory();
 
