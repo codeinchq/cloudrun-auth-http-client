@@ -37,11 +37,6 @@ $httpClient = $factory->factory(
         // the rest of the service account key
     ]
 );
-
-```
-)
-
-$client = new CloudRunAuthHttpClient('https://my-service-12345-uc.a.run.app');
 ```
 
 ## License
