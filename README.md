@@ -1,6 +1,6 @@
 # GCP CloudRun authenticated HTTP client
 
-A PSR-7 HTTP client based on Guzzle for services hosted on Google Cloud Platform Cloud Run
+A PSR-7 HTTP client based on Guzzle for services hosted on Google Cloud Platform Cloud Run.
 
 ## Installation
 
@@ -11,6 +11,11 @@ composer require codeinc/cloudrun-auth-http-client
 ```
 
 ## Usage
+
+A GCP service account is required to authenticate the requests sent to a Cloud Run service. If you do not already have a service account, follow instructions on [this page](https://cloud.google.com/iam/docs/service-accounts-create) in order to create one.
+
+Before using the library the service account must be authenticated to send requests to the Cloud Run service following [these steps](https://cloud.google.com/run/docs/authenticating/service-to-service#set-up-sa).
+
 
 ```php
 
