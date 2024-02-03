@@ -16,53 +16,37 @@ A GCP service account is required to authenticate the requests sent to a Cloud R
 
 Before using the library the service account must be authenticated to send requests to the Cloud Run service following [these steps](https://cloud.google.com/run/docs/authenticating/service-to-service#set-up-sa).
 
-
-Creating the client using a service account key stored in a file:
-
 ```php
 use CodeInc\CloudRunAuthHttpClient\HttpClientFactory;
-
-$cloudRunServiceUrl = 'https://my-service-12345-uc.a.run.app';
-$serviceAccountKeyPath = '/path/to/your/service-account-key.json';
 
 // create a new HttpClientFactory instance
 $factory = new HttpClientFactory();
 
-// create the client 
-$httpClient = $factory->factory($cloudRunServiceUrl, $serviceAccountKeyPath);
-```
-
-Creating the client using a service account key stored in memory:
-```php
-use CodeInc\CloudRunAuthHttpClient\HttpClientFactory;
-
-$cloudRunServiceUrl = 'https://my-service-12345-uc.a.run.app';
-$serviceAccountKey = [
-    'type' => 'service_account',
-    // the rest of the service account key
-];
-
-// create a new HttpClientFactory instance
-$factory = new HttpClientFactory();
+// create the client using a JSON file for the service account key
+$httpClient = $factory->factory(
+    // Cloud Run service URL
+    'https://my-service-12345-uc.a.run.app',
+    // path to your service account key 
+    '/path/to/your/service-account-key.json' 
+);
 
 // create the client using a key stored in memory
-$httpClient = $factory->factory($cloudRunServiceUrl, $serviceAccountKey);
-```
-
-Creating the client using a service account key stored in a environment variable:
-```php
-use CodeInc\CloudRunAuthHttpClient\HttpClientFactory;
-
-$cloudRunServiceUrl = 'https://my-service-12345-uc.a.run.app';
-$envVarName = 'SERVICE_ACCOUNT_KEY';
-
-// create a new HttpClientFactory instance
-$factory = new HttpClientFactory();
+$httpClient = $factory->factory(
+    // Cloud Run service URL
+    'https://my-service-12345-uc.a.run.app',
+    // service account key 
+    [
+        'type' => 'service_account',
+        // the rest of the service account key
+    ]
+);
 
 // create the client using a key stored in a environment variable
 $httpClient = $factory->factory(
-    $cloudRunServiceUrl,
-    json_decode(getenv($envVarName), true)
+    // Cloud Run service URL
+    'https://my-service-12345-uc.a.run.app',
+    // service account key 
+    json_decode(getenv('SERVICE_ACCOUNT_KEY'), true)
 );
 ```
 
