@@ -1,6 +1,6 @@
-# GCP Cloud Run authenticated HTTP client
+# GCP Cloud Run authenticated HTTP client for PHP
 
-A PSR-7 HTTP client based on Guzzle for services hosted on Google Cloud Platform Cloud Run.
+The PHP 8.2+ library is a [PSR-7](https://www.php-fig.org/psr/psr-7/) HTTP client based on [Guzzle](https://github.com/guzzle/guzzle) for services hosted on [Google Cloud Platform Cloud Run](https://cloud.google.com/run?hl=en).
 
 ## Installation
 
