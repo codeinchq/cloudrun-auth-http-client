@@ -42,6 +42,14 @@ $httpClient = $factory->factory(
         // the rest of the service account key
     ]
 );
+
+// create the client using a key stored in a environment variable
+$httpClient = $factory->factory(
+    // Cloud Run service URL
+    'https://my-service-12345-uc.a.run.app',
+    // service account key 
+    json_decode(getenv('SERVICE_ACCOUNT_KEY'), true)
+);
 ```
 
 ## License
