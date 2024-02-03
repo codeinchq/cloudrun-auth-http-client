@@ -16,6 +16,8 @@ use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 
 /**
+ * Factory for Cloud Run authenticated HTTP client based on the Google Auth Library for PHP and Guzzle.
+ *
  * @see https://github.com/googleapis/google-auth-library-php
  */
 final readonly class HttpClientFactory
@@ -28,8 +30,8 @@ final readonly class HttpClientFactory
     public function factory(array|string $jsonKey, string $serviceUrl): Client
     {
         return new Client([
-            'handler'  => $this->createHttpClientHandler($jsonKey, $serviceUrl),
-            'auth'     => 'google_auth',
+            'handler' => $this->createHttpClientHandler($jsonKey, $serviceUrl),
+            'auth' => 'google_auth',
             'base_uri' => $serviceUrl,
         ]);
     }
@@ -54,21 +56,11 @@ final readonly class HttpClientFactory
     private function createMiddleware(array|string $jsonKey, string $serviceUrl): AuthTokenMiddleware
     {
         return new AuthTokenMiddleware(
-            $this->getServiceAccountCredentials($jsonKey, $serviceUrl)
-        );
-    }
-
-    /**
-     * @param array|string $jsonKey
-     * @param string $targetAudience
-     * @return ServiceAccountCredentials
-     */
-    private function getServiceAccountCredentials(array|string $jsonKey, string $targetAudience): ServiceAccountCredentials
-    {
-        return new ServiceAccountCredentials(
-            scope: null,
-            jsonKey: $jsonKey,
-            targetAudience: $targetAudience
+            new ServiceAccountCredentials(
+                scope: null,
+                jsonKey: $jsonKey,
+                targetAudience: $serviceUrl
+            )
         );
     }
 }
