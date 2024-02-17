@@ -1,6 +1,6 @@
 {
   "name": "codeinc/cloudrun-auth-http-client",
-  "version": "v1.3",
+  "version": "v1.4",
   "description": "A PSR-7 HTTP client based on Guzzle for services hosted on Google Cloud Platform Cloud Run",
   "homepage": "https://github.com/codeinchq/cloudrun-auth-http-client",
   "type": "library",
